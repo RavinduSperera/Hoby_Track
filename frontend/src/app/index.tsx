@@ -1,15 +1,10 @@
-import { Text, View } from "react-native";
+import { Redirect } from "expo-router";
 
+/**
+ * Entry Point of the App
+ * Currently redirects to the Onboarding screen.
+ * In a real app, this would check authentication state.
+ */
 export default function Index() {
-  return (
-    <View
-      style={{
-        flex: 1,
-        justifyContent: "center",
-        alignItems: "center",
-      }}
-    >
-      <Text>Welcome to the Hoby_Track</Text>
-    </View>
-  );
+  return <Redirect href={"/onboarding" as any} />;
 }
