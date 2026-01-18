@@ -36,31 +36,34 @@ export default function RegisterScreen() {
             />
 
             <KeyboardAvoidingView
-                behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+                behavior={Platform.OS === 'ios' ? 'padding' : undefined}
+                keyboardVerticalOffset={Platform.OS === 'ios' ? 0 : 20}
                 style={styles.container}
             >
                 <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
                     <View style={styles.inner}>
-                        <View style={styles.header}>
-                            <Text style={styles.title}>What's your name?</Text>
-                            <Text style={styles.subtitle}>
-                                We'd love to know who we're helping today.
-                            </Text>
-                        </View>
+                        <View style={styles.contentContainer}>
+                            <View style={styles.header}>
+                                <Text style={styles.title}>What's your name?</Text>
+                                <Text style={styles.subtitle}>
+                                    We'd love to know who we're helping today.
+                                </Text>
+                            </View>
 
-                        <View style={styles.form}>
-                            <Input
-                                label="Your Name"
-                                placeholder="Ex. John Doe"
-                                value={name}
-                                onChangeText={(text) => {
-                                    setName(text);
-                                    if (error) setError('');
-                                }}
-                                error={error}
-                                autoFocus
-                                autoCapitalize="words"
-                            />
+                            <View style={styles.form}>
+                                <Input
+                                    label="Your Name"
+                                    placeholder="Ex. John Doe"
+                                    value={name}
+                                    onChangeText={(text) => {
+                                        setName(text);
+                                        if (error) setError('');
+                                    }}
+                                    error={error}
+                                    autoFocus
+                                    autoCapitalize="words"
+                                />
+                            </View>
                         </View>
 
                         <View style={styles.footer}>
@@ -87,8 +90,11 @@ const styles = StyleSheet.create({
     inner: {
         flex: 1,
         paddingHorizontal: 24,
-        justifyContent: 'space-between',
         paddingVertical: 20,
+    },
+    contentContainer: {
+        flex: 1,
+        // Pushes the footer to the bottom
     },
     header: {
         marginTop: 20,
@@ -105,8 +111,7 @@ const styles = StyleSheet.create({
         lineHeight: 24,
     },
     form: {
-        flex: 1,
-        paddingTop: 40,
+        marginTop: 40,
     },
     footer: {
         marginBottom: 20,
