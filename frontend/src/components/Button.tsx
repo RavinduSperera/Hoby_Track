@@ -1,13 +1,13 @@
 import React from 'react';
-import { TouchableOpacity, Text, StyleSheet, ViewStyle, TextStyle, ActivityIndicator } from 'react-native';
+import { TouchableOpacity, Text, StyleSheet, ViewStyle, TextStyle, ActivityIndicator, StyleProp } from 'react-native';
 import { Colors } from '../constants/Colors';
 
 interface ButtonProps {
     title: string;
     onPress: () => void;
     variant?: 'primary' | 'outline' | 'ghost'; // Added ghost for text-only buttons
-    style?: ViewStyle;
-    textStyle?: TextStyle;
+    style?: StyleProp<ViewStyle>;
+    textStyle?: StyleProp<TextStyle>;
     disabled?: boolean;
     loading?: boolean;
     icon?: React.ReactNode; // Optional icon
@@ -57,6 +57,10 @@ export const Button: React.FC<ButtonProps> = ({
                     borderColor: getBorderColor(),
                     borderWidth: variant === 'outline' ? 1 : 0,
                 },
+                variant === 'ghost' && {
+                    shadowOpacity: 0,
+                    elevation: 0,
+                },
                 style,
             ]}
         >
@@ -83,7 +87,6 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         paddingHorizontal: 24,
         width: '100%',
-        marginVertical: 8,
         // Shadow for depth
         shadowColor: Colors.primary,
         shadowOffset: {
