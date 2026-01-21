@@ -96,6 +96,14 @@ export const CustomAlert: React.FC<CustomAlertProps> = ({
                     styles.content,
                     { transform: [{ translateY: slideAnim }] }
                 ]}>
+                    <TouchableOpacity
+                        style={styles.closeIcon}
+                        onPress={onClose}
+                        activeOpacity={0.6}
+                    >
+                        <Feather name="x" size={20} color={Colors.textSecondary} />
+                    </TouchableOpacity>
+
                     <View style={[styles.iconContainer, { backgroundColor: getIconColor() + '15' }]}>
                         <Feather name={getIcon()} size={32} color={getIconColor()} />
                     </View>
@@ -104,15 +112,6 @@ export const CustomAlert: React.FC<CustomAlertProps> = ({
                     <Text style={styles.message}>{message}</Text>
 
                     <View style={styles.footer}>
-                        {onConfirm && (
-                            <Button
-                                title={cancelLabel}
-                                variant="outline"
-                                onPress={onClose}
-                                style={[styles.button, { borderColor: Colors.border, marginRight: 12 }]}
-                                textStyle={{ color: Colors.textSecondary }}
-                            />
-                        )}
                         <Button
                             title={onConfirm ? confirmLabel : 'Close'}
                             variant="primary"
@@ -148,6 +147,7 @@ const styles = StyleSheet.create({
         backgroundColor: Colors.surface,
         borderRadius: 24,
         padding: 24,
+        paddingTop: 32, // Extra padding for the close icon
         alignItems: 'center',
         borderWidth: 1,
         borderColor: Colors.border,
@@ -156,6 +156,13 @@ const styles = StyleSheet.create({
         shadowOpacity: 0.5,
         shadowRadius: 20,
         elevation: 10,
+    },
+    closeIcon: {
+        position: 'absolute',
+        top: 16,
+        right: 16,
+        padding: 4,
+        zIndex: 1,
     },
     iconContainer: {
         width: 64,
