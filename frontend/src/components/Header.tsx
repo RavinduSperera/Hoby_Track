@@ -54,14 +54,12 @@ export const Header: React.FC<HeaderProps> = ({
 
 const styles = StyleSheet.create({
     container: {
-        height: 60,
+        height: 70, // Increased height for airiness
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'space-between',
-        paddingHorizontal: 16,
-        backgroundColor: Colors.background, // Match theme
-        borderBottomWidth: 1,
-        borderBottomColor: Colors.border,
+        paddingHorizontal: 20, // Slightly more padding
+        backgroundColor: Colors.background,
     },
     iconButton: {
         padding: 8,
@@ -84,7 +82,5 @@ const styles = StyleSheet.create({
         backgroundColor: Colors.surface,
         justifyContent: 'center',
         alignItems: 'center',
-        borderWidth: 1,
-        borderColor: Colors.border,
     },
 });
