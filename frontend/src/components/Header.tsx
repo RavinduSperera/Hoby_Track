@@ -3,6 +3,7 @@ import { View, Text, StyleSheet, TouchableOpacity, Image } from 'react-native';
 import { Feather } from '@expo/vector-icons'; // Standard icons
 import { Colors } from '../constants/Colors';
 import { useRouter } from 'expo-router';
+import { useSidebar } from '../context/SidebarContext';
 
 interface HeaderProps {
     title?: string;
@@ -22,13 +23,22 @@ export const Header: React.FC<HeaderProps> = ({
     onProfilePress,
 }) => {
     const router = useRouter();
+    const { toggleSidebar } = useSidebar();
+
+    const handleMenuPress = () => {
+        if (onMenuPress) {
+            onMenuPress();
+        } else {
+            toggleSidebar();
+        }
+    };
 
     return (
         <View style={styles.container}>
             {/* Left: Hamburger Menu */}
             <TouchableOpacity
                 style={styles.iconButton}
-                onPress={onMenuPress}
+                onPress={handleMenuPress}
                 activeOpacity={0.7}
             >
                 <Feather name="menu" size={24} color={Colors.text} />
