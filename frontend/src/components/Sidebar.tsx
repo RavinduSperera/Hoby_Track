@@ -13,6 +13,7 @@ import { Feather } from '@expo/vector-icons';
 import { Colors } from '../constants/Colors';
 import { useSidebar } from '../context/SidebarContext';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { MenuItem } from './MenuItem';
 
 const { width } = Dimensions.get('window');
 const SIDEBAR_WIDTH = width * 0.75;
@@ -106,13 +107,6 @@ export const Sidebar = () => {
     );
 };
 
-const MenuItem = ({ icon, label, onPress }: { icon: any, label: string, onPress: () => void }) => (
-    <TouchableOpacity style={styles.menuItem} onPress={onPress}>
-        <Feather name={icon} size={20} color={Colors.textSecondary} />
-        <Text style={styles.menuLabel}>{label}</Text>
-    </TouchableOpacity>
-);
-
 const styles = StyleSheet.create({
     backdrop: {
         ...StyleSheet.absoluteFillObject,
@@ -146,19 +140,6 @@ const styles = StyleSheet.create({
     },
     menuItems: {
         flex: 1,
-    },
-    menuItem: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        paddingVertical: 16,
-        borderBottomWidth: 0.5,
-        borderBottomColor: Colors.border + '40',
-    },
-    menuLabel: {
-        marginLeft: 16,
-        fontSize: 16,
-        color: Colors.text,
-        fontWeight: '500',
     },
     footer: {
         paddingTop: 20,

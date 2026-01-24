@@ -5,9 +5,11 @@ import { ScreenWrapper } from '../components/ScreenWrapper';
 import { Button } from '../components/Button';
 import { Input } from '../components/Input';
 import { Colors } from '../constants/Colors';
+import { useUser } from '../context/UserContext';
 
 export default function RegisterScreen() {
     const router = useRouter();
+    const { setUser } = useUser();
     const [name, setName] = useState('');
     const [error, setError] = useState('');
 
@@ -16,10 +18,14 @@ export default function RegisterScreen() {
             setError('Please enter your name');
             return;
         }
-        // TODO: Save user name to storage
-        console.log('User Registered:', name);
-        // Navigate to Home or next screen
-        router.replace('/(tabs)/dashboard' as any);
+
+        // Save user to context
+        const userData = { name: name.trim() };
+        setUser(userData);
+        console.log('✅ User Registration Started:', userData);
+
+        // Navigate to Avatar selection
+        router.push('/select-avatar' as any);
     };
 
     return (
